@@ -1,0 +1,31 @@
+<div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+  
+      <!-- Machine Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Machine </mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="score">
+        <mat-header-cell *matHeaderCellDef> Score </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <mat-form-field floatLabel="never">
+            <input matInput placeholder="Score" [value]="element.score" (input)="editField('symbol', $event.target.value, element)">
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+  
+      <!-- Button Column -->
+      <ng-container matColumnDef="button">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button (click)="update(element)" mat-button>Update</button>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>

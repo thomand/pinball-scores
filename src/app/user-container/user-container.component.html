@@ -1,0 +1,73 @@
+<div class="container-fluid">
+    <div class="widget">
+        <img src="{{user.photoUrl}}" class="photo" />
+        <a routerLink="/userSettings" routerLinkActive="active" href="#">
+            <h1 (click)="loadUserSettings()" class="userSettings"><i class="fa fa-2x fa-cog"></i></h1>
+        </a>
+        <h1>{{user.name}}</h1>
+    </div>
+    <button class="logout-button" (click)="logout()">LOG OUT</button>
+
+    <div class="user-middle">
+        <!-- Noe fancy statistikk og sånn her -->
+        <!--<webcam></webcam>-->
+        <div class="row centered extra-padding">
+            <div class="row clearing">
+                <div class="col-xs-6 left top-left">
+                    <div class="row clearing">
+                        <h1>{{user.ranking}}</h1>
+                    </div>
+                    <div class="row clearing">
+                        <h2>IFPA RANKING</h2>
+                    </div>
+                </div>
+                <div class="col-xs-6 right top-right">
+                    <div class="row clearing">
+                        <h1>{{user.gamesPlayed}}</h1>
+                    </div>
+                    <div class="row clearing">
+                        <h2>GAMES</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearing">
+                    <div class="col-xs-6 left bottom-left">
+                        <div class="row clearing">
+                            <h1>3</h1>
+                        </div>
+                        <div class="row clearing">
+                            <h2>TOP TENs</h2>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 right bottom-right">
+                        <div class="row clearing">
+                            <h1>1</h1>
+                        </div>
+                        <div class="row clearing">
+                            <h2>METASCORE</h2>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        
+        <!-- <h1>Percentage of highscores</h1>
+        <br>
+        <div class="row" *ngFor="let machine of machines">
+                <div class="col-xs-5 no-left-padding">
+                    {{machine.name}}
+                </div>
+                <div class="col-xs-7">
+                    <progressbar [max]="machine.highscore" [value]="machine.userScore" type="success" [striped]="false" [animate]="false"><i>{{machine.percentage}}%</i></progressbar>
+                </div>
+            </div> -->
+    </div>
+    <br>
+    <h1>Latest scores</h1>
+    <br>
+    <app-five-newest-scores></app-five-newest-scores>
+    <br>
+    <h1>Statistics</h1>
+    <br>
+    <app-machine-user-chart></app-machine-user-chart>
+</div>
+

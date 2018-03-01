@@ -1,0 +1,59 @@
+.fa-chevron-circle-left {
+    color: #fff;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+
+.mat-form-field {
+    width: 90%;
+    margin-left:5%;
+}
+
+.top-card {
+    margin-top:-30px;
+}
+
+.widget{
+    position: relative;
+    width: 100%;
+    background: #191919;
+    height: 190px;
+    overflow: hidden;
+    /* margin-top:20px; */
+}
+      
+.photo{
+    height: 100px;
+    width: 100px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+}
+
+.fa-camera {
+    margin-top: -50px;
+    z-index:1;
+
+  }
+
+  .userSettings {
+    margin-top:-20px;
+    margin-left: 70px;
+    font-size:12px;
+  }
+
+  h1, h2, h3{
+    display: block;
+    margin: 0 0;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: #fff;
+  }
+  h1{
+    font-size: 18px;
+    padding-top: 10px;
+  }

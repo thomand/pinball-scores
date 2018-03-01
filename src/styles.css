@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+
+
+body, html {
+    max-width: 100%;
+    overflow-x: hidden;
+    padding-bottom: 28px;
+    background-color: #191919 !important;
+    color: #fff !important;
+}
+
+@font-face {
+    font-family: "Pinball font";
+    src: url(assets/PinballDreams.ttf) format("truetype");
+}
+.pinballfont {
+    font-family: "Pinball font", Verdana, Tahoma;
+}
+
+.row {
+    padding-left: 5px;
+}
+
+
+#highscore > * {
+    padding-left:0 !important;
+    padding-right:0 !important;
+}
+
+.modal-content {
+    background-color: #424242 !important;
+}
+.close {
+    color: #fff !important;
+}
+
+.modal-dialog {
+    margin: 0 !important;
+}
+
+.mat-paginator-page-size {
+    display: none !important;
+}

@@ -1,0 +1,47 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">{{title}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+  <div class="example-container mat-elevation-z8">
+      <mat-table #table [dataSource]="dataSource">
+    
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+        </ng-container>
+    
+        <!-- Name Column -->
+        <ng-container matColumnDef="player">
+          <mat-header-cell *matHeaderCellDef> Player </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.player}} </mat-cell>
+        </ng-container>
+    
+        <!-- score Column -->
+        <ng-container matColumnDef="score">
+          <mat-header-cell *matHeaderCellDef> Score </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.score}} </mat-cell>
+        </ng-container>
+
+        <!-- days Column -->
+        <ng-container matColumnDef="days">
+            <mat-header-cell *matHeaderCellDef> Days </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.days}} </mat-cell>
+          </ng-container>
+    
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    
+      <mat-paginator #paginator
+                    [pageSize]="10"
+                    [showFirstLastButtons]="true">
+      </mat-paginator>
+    </div>
+</div>
+<!-- <div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
+</div> -->

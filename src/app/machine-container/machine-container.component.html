@@ -1,0 +1,17 @@
+
+<!-- <app-user-container></app-user-container> -->
+
+<div class="row">
+  <div class="col-xs-12"><h4 class="pinballfont center">WORK WORK (TRONDHEIM)</h4></div>
+</div>
+<div *ngFor="let machine of wwMachines">
+  <app-container-6 position={{machine.position}} title={{machine.title}} filename={{machine.filename}}></app-container-6>
+</div>
+
+<div class="row">
+  <div class="col-xs-12"><h4 class="pinballfont center">TILT (OSLO)</h4></div>
+</div>
+
+<div *ngFor="let machine of tiltMachines">
+  <app-container-6 position={{machine.position}} title={{machine.title}} filename={{machine.filename}}></app-container-6>
+</div>

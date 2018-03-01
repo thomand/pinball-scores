@@ -1,0 +1,29 @@
+<div class="example-container">
+  <h1 class="pinballfont">Register score</h1>
+  <h2>{{username}}</h2>
+  <br>
+  <h2>{{commaSeparated(score.value)}}</h2>
+  <mat-form-field>
+    <mat-select #machine placeholder="Machine" [formControl]="machineControl" required>
+      <mat-option *ngFor="let machine of machines" value="{{machine}}">{{machine}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="machineControl.hasError('required')">Please choose a machine</mat-error>
+  </mat-form-field>
+  <br>
+    <mat-form-field>
+      <input matInput #score placeholder="Score" type="text" pattern="\d*" [formControl]="scoreControl" required>
+      <mat-error *ngIf="scoreControl.hasError('required')">
+        Score is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <br>
+  <br>
+  <div class="col-md-4 text-center"> 
+    <button (click)="submit(score.value, machine.selected.value)" type="button" class="btn btn-success" [disabled]="scoreControl.hasError('required') || machineControl.hasError('required')">Shoot again</button>
+  </div>
+  
+  
+  <!-- Copyright 2018 Google Inc. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->

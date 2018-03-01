@@ -1,0 +1,39 @@
+<a routerLink="/user" routerLinkActive="active" href="#"><i class="fa fa-2x fa-chevron-circle-left"></i></a>
+<div class="widget">
+    <img src="{{user.photoUrl}}" class="photo" />
+    <a routerLink="/userSettings" routerLinkActive="active" href="#">
+        <h1 (click)="loadUserSettings()" class="userSettings"><i class="fa fa-2x fa-camera"></i></h1>
+    </a>
+</div>
+<mat-card class="top-card">
+    <form class="example-form">
+      <!-- HEADLINE h1 eller noe -->
+      <h5>Name</h5>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Name" value="{{name}}" disabled="true">
+        </mat-form-field>
+      </form>
+      
+    <!-- 
+      X Name
+      Image (med opplasting) : må ha et standard hvis ikke satt
+      X Username (short? TAN)
+      Old user (en bedre måte å gjøre dette på?)
+      Epost er det eneste som er unikt! Brukes i databasen for player
+      IFPA number
+     -->
+</mat-card>
+<br>
+<mat-card>
+  <form class="example-form">
+      <h5>Username</h5>
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Username" [formControl]="usernameFormControl"
+                 [errorStateMatcher]="matcher" value="{{username}}">
+          <mat-error *ngIf="usernameFormControl.hasError('required')">
+            Username is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+  </form>
+</mat-card>
+
