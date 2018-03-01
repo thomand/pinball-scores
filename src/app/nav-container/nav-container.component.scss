@@ -1,53 +1,98 @@
+@import url('https://fonts.googleapis.com/css?family=Iceland');
+
 .navbar-top {
-    height: 70px;
 	background: transparent; 
 	color: rgba(255,255,255,.25); 
 	text-align: center;
 	margin: 0;
 }
 
-@font-face {
-    font-family: "Pinball font";
-    src: url(../../assets/PinballDreams.ttf) format("truetype");
-}
-
-p {
-	text-transform: uppercase;
-	letter-spacing: .5em;
-	display: inline-block;
-	padding-top: 20px;
-	width: 100%;
-  
-  span {
-  	font: 28px "Pinball font", "Oswald", sans-serif;
-  	letter-spacing: 0;
-  	//padding: .25em 0 .325em;
-	  display: block;
-	  margin: 0 auto;
-  	text-shadow: 0 0 80px rgba(255,255,255,.5);
-
-/* Clip Background Image */
-
-	  background: url(http://f.cl.ly/items/010q3E1u3p2Q0j1L1S1o/animated_text_fill.png) repeat-y;
-	  -webkit-background-clip: text;
-	  background-clip: text;
-
-/* Animate Background Image */
-
-	  -webkit-text-fill-color: transparent;
-	  -webkit-animation: aitf 80s linear infinite;
-
-/* Activate hardware acceleration for smoother animations */
-
-	  -webkit-transform: translate3d(0,0,0);
-	  -webkit-backface-visibility: hidden;
-
+body {
+	background-color: #222222;
+	background: repeating-linear-gradient(45deg, #2b2b2b 0%, #2b2b2b 10%, #222222 0%, #222222 50%) 0 / 15px 15px;
   }
-}
+  
+  #container {
+	width: 500px;
+	margin: auto;
+  }
+  
+  /*Neon*/
+  p {
+	text-align: center;
+	font-size: 7em;
+	margin: 0 0 10px 0;
+	letter-spacing: .2em;
+	display: inline-block;
+	width: 100%;
+  }
+  
+  a {
+	text-decoration: none;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	transition: all 0.5s;
+  }
+  
+  p:nth-child(1) a {
+	font-size: 1.5em;
+	color: #eee;
+	font-family: Iceland;
+	-webkit-animation: neon1 1.5s ease-in-out infinite alternate;
+	-moz-animation: neon1 1.5s ease-in-out infinite alternate;
+	animation: neon1 1.5s ease-in-out infinite alternate;
+  }
+  
+  p:nth-child(1) a:hover {
+	color: #FF9900;
+	-webkit-animation: none;
+	-moz-animation: none;
+	animation: none;
+  }
+  
+  
+  p a:hover {
+	color: #eee;
+  }
+  /*glow for webkit*/
+  
+  @-webkit-keyframes neon1 {
+	from {
+	  text-shadow: 0 0 10px #eee, 0 0 20px #eee, 0 0 30px #eee, 0 0 40px #FF9900, 0 0 70px #FF9900, 0 0 80px #FF9900, 0 0 100px #FF9900, 0 0 150px #FF9900;
+	}
+	to {
+	  text-shadow: 0 0 5px #eee, 0 0 10px #eee, 0 0 15px #eee, 0 0 20px #FF9900, 0 0 35px #FF9900, 0 0 40px #FF9900, 0 0 50px #FF9900, 0 0 75px #FF9900;
+	}
+  }
 
-/* Animate Background Image */
+  /*glow for mozilla*/
+  
+  @-moz-keyframes neon1 {
+	from {
+	  text-shadow: 0 0 10px #eee, 0 0 20px #eee, 0 0 30px #eee, 0 0 40px #FF9900, 0 0 70px #FF9900, 0 0 80px #FF9900, 0 0 100px #FF9900, 0 0 150px #FF9900;
+	}
+	to {
+	  text-shadow: 0 0 5px #eee, 0 0 10px #eee, 0 0 15px #eee, 0 0 20px #FF9900, 0 0 35px #FF9900, 0 0 40px #FF9900, 0 0 50px #FF9900, 0 0 75px #FF9900;
+	}
+  }
 
-@-webkit-keyframes aitf {
-	0% { background-position: 0% 50%; }
-	100% { background-position: 100% 50%; }
-}
+  /*glow*/
+  
+  @keyframes neon1 {
+	from {
+	  text-shadow: 0 0 10px #eee, 0 0 20px #eee, 0 0 30px #eee, 0 0 40px #FF9900, 0 0 70px #FF9900, 0 0 80px #FF9900, 0 0 100px #FF9900, 0 0 150px #FF9900;
+	}
+	to {
+	  text-shadow: 0 0 5px #eee, 0 0 10px #eee, 0 0 15px #eee, 0 0 20px #FF9900, 0 0 35px #FF9900, 0 0 40px #FF9900, 0 0 50px #FF9900, 0 0 75px #FF9900;
+	}
+  }
+  /*REEEEEEEEEEESPONSIVE*/
+  
+  @media (max-width: 650px) {
+	#container {
+	  width: 100%;
+	}
+	p {
+	  font-size: 3.5em;
+	}
+  }

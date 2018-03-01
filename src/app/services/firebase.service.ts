@@ -9,11 +9,27 @@ export class FirebaseService {
   dbRef : any;
   //scores : ScoreElement[] = [];
   scores : Subject<any> = new Subject();
+  machines : Subject<any> = new Subject();
   constructor(private db: AngularFireDatabase) { }
 
   getPlayer(player) {}
 
   setPlayer() {}
+
+  getMachines() {
+    let machines = [];
+    this.dbRef = this.db.list("/");
+    this.dbRef.snapshotChanges(['child_added'])
+    .subscribe(actions => {
+      actions.forEach(action => {
+        let machine = action.key;
+        if (machine != "players") {
+          machines.push(machine);
+        }
+      })
+      this.machines.next(machines);
+    });
+  }
 
   getScoresForMachine(machineName : string){
     let scoresArray = new Array<ScoreElement>();

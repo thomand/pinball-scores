@@ -4,6 +4,8 @@ import 'rxjs/add/observable/of';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { Subject } from 'rxjs/Subject';
+import { FirebaseService } from '../services/firebase.service';
 
 
 @Component({
@@ -14,33 +16,21 @@ import { AuthService } from '../services/auth.service';
 export class RegisterScoreComponent implements OnInit {
   machineControl = new FormControl('', [Validators.required]);
   scoreControl = new FormControl('', [Validators.required]);
+  componentDestroyed$: Subject<boolean> = new Subject();
+  dbRef : any;
+  machines : string[] = [];
+  user = { email: null, gamesPlayed: null, name: null, player: null };
   
-  constructor(private db: AngularFireDatabase, private router : Router, private authService: AuthService) {
+  constructor(private db: AngularFireDatabase, private firebaseService : FirebaseService, private router : Router, private authService: AuthService) {
     this.subscribeToUserData();
-    this.dbRef = this.db.list("/");
-    this.dbRef.snapshotChanges(['child_added'])
-    .subscribe(actions => {
-      actions.forEach(action => {
-        let machine = action.key;
-        if (machine != "players") {
-          this.machines.push(machine);
-        }
-      })
-    });
+    this.firebaseService.machines.takeUntil(this.componentDestroyed$).subscribe(machines => this.machines = machines);
    }
 
    commaSeparated(input) {
     return input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
    }
 
-  dbRef : any;
-  machines : string[] = [];
-  user = {
-    email: null, 
-    gamesPlayed: null, 
-    name: null, 
-    player: null
-  };
+  
 
   submit(score, machine) {
     let date = new Date();
@@ -62,7 +52,13 @@ export class RegisterScoreComponent implements OnInit {
  
 
   ngOnInit() {
+    this.firebaseService.getMachines();
    
+  }
+
+  ngOnDestroy() {
+    this.componentDestroyed$.next(true);
+    this.componentDestroyed$.complete();
   }
 
 }
