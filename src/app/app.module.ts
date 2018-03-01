@@ -35,7 +35,8 @@ import {
   MatFormFieldModule, 
   MatInputModule, 
   MatSelectModule,
-  MatCardModule 
+  MatCardModule,
+  MatTabsModule, 
 } from '@angular/material';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { WebcamModule } from 'ngx-webcam';
@@ -163,7 +164,8 @@ const appRoutes: Routes = [
     MatInputModule,
     MatSelectModule,
     AmChartsModule,
-    MatCardModule
+    MatCardModule,
+    MatTabsModule
   ],
   providers: [AuthService, AuthGuardService, FirebaseService],
   bootstrap: [AppComponent]

@@ -6,6 +6,8 @@ import { ProgressbarConfig } from 'ngx-bootstrap/progressbar';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { AuthGuardService } from '../services/auth-guard.service';
+import { FirebaseService } from '../services/firebase.service';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-user-container',
@@ -14,19 +16,13 @@ import { AuthGuardService } from '../services/auth-guard.service';
   providers:[AuthService]
 })
 export class UserContainerComponent implements OnInit {
+  
   dbRef : any;
   username = "Thomas";
-  user = {
-    name: null,
-    username: null,
-    ranking: null,
-    gamesPlayed: 0,
-    photoUrl: null
-    
-  };
+  user = { name: null, username: null, ranking: null, gamesPlayed: 0, photoUrl: null };
   machines = [];
   playerScoresAllMachines = []
-  constructor(private db: AngularFireDatabase, private authService : AuthService)   {
+  constructor(private db: AngularFireDatabase, private authService : AuthService, private firebaseService : FirebaseService)   {
     this.subscribeToUserData();
     this.dbRef = this.db.list("/");
     this.dbRef.snapshotChanges(['child_added'])

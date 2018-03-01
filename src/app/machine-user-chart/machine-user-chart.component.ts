@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AmChartsService, AmChart } from "@amcharts/amcharts3-angular";
 import { FormControl, Validators } from '@angular/forms';
+import { FirebaseService } from '../services/firebase.service';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'app-machine-user-chart',
@@ -9,10 +11,13 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class MachineUserChartComponent implements OnInit, OnDestroy {
   //public options: any;
+  componentDestroyed$: Subject<boolean> = new Subject();
   private chart2: AmChart;
   machines = [];
 
-  constructor(private AmCharts: AmChartsService) {}
+  constructor(private AmCharts: AmChartsService, private firebaseService : FirebaseService) {
+    this.firebaseService.machines.takeUntil(this.componentDestroyed$).subscribe(machines => this.machines = machines);
+  }
 
   makeRandomDataProvider() {
     const dataProvider = [];
@@ -90,6 +95,7 @@ export class MachineUserChartComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.firebaseService.getMachines();
     // Create chartdiv1
     //this.options = this.makeOptions(this.makeRandomDataProvider());
 
@@ -99,7 +105,8 @@ export class MachineUserChartComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-
+    this.componentDestroyed$.next(true);
+    this.componentDestroyed$.complete();
     // Cleanup chartdiv2
     if (this.chart2) {
       this.AmCharts.destroyChart(this.chart2);

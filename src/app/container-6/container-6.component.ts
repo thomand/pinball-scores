@@ -48,6 +48,7 @@ export class ModalContentComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   ngAfterViewInit() {
+    this.firebaseService.getAllPlayerUsernames();
     this.firebaseService.scores.takeUntil(this.componentDestroyed$).subscribe(scores => {
       this.dataSource = new MatTableDataSource<ScoreElement>(scores);
       this.dataSource.paginator = this.paginator;
