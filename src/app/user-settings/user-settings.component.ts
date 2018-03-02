@@ -11,12 +11,18 @@ import {ErrorStateMatcher} from '@angular/material/core';
 export class UserSettingsComponent implements OnInit {
   username = "Thomas"
   name = "Thomas Andersen"
-  usernmaeFormControl = new FormControl('', [
+  user = { name: null, username: null, ranking: null, gamesPlayed: 0, photoUrl: null };
+
+  usernameFormControl = new FormControl('', [
     Validators.required
   ]);
 
   matcher = new MyErrorStateMatcher();
   constructor() { }
+
+  loadUserSettings() {
+    
+  }
 
   ngOnInit() {
   }

@@ -10,18 +10,24 @@ export class FirebaseService {
   //scores : ScoreElement[] = [];
   scores : Subject<any> = new Subject();
   machines : Subject<any> = new Subject();
-  playersUsernames = {};
+  playersUsernames : Subject<any> = new Subject();
+  private usernameMapping = {}
   constructor(private db: AngularFireDatabase) { }
 
   getAllPlayerUsernames() {
+    let playersUsernames = {}
     this.dbRef = this.db.list("/players");
     this.dbRef.snapshotChanges(['child_added'])
     .subscribe(actions => {
       actions.forEach(action => {
         let player = action.key;
-        let username = action.payload.val().username;
-        this.playersUsernames[player] = username;
+        let playerData = {}
+        playerData[player] = action.payload.val().username;;
+        playerData["name"] = action.payload.val().name;
+        playersUsernames[player] = playerData;
+        this.usernameMapping[player] = action.payload.val().username;
       })
+      this.playersUsernames.next(playersUsernames);
     });
   }
 
@@ -55,7 +61,7 @@ export class FirebaseService {
           if(i != "paginator"){
             scoresArray[i].score = this.numberWithCommas(scoresArray[i].score);
             scoresArray[i]["position"] = parseInt(i)+1;
-            scoresArray[i].player = this.playersUsernames[scoresArray[i].player];
+            scoresArray[i].player = this.usernameMapping[scoresArray[i].player];
           }
         }
         this.scores.next(scoresArray);

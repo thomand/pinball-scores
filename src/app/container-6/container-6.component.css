@@ -13,6 +13,10 @@
     height:120px;
 }
 
+.userBold {
+    font-weight: bold;
+}
+
 .modal-body {
     padding:0;
 }

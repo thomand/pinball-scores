@@ -17,6 +17,7 @@
         <!-- Name Column -->
         <ng-container matColumnDef="player">
           <mat-header-cell *matHeaderCellDef> Player </mat-header-cell>
+          <!-- [ngClass]="{'userBold' : playerNameEqualsLoggedInUser(element) === true}" -->
           <mat-cell *matCellDef="let element"> {{element.player}} </mat-cell>
         </ng-container>
     

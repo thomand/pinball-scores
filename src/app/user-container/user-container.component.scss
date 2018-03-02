@@ -17,6 +17,14 @@
   position: absolute;
 }
 
+.fa-cog {
+  left: 20px;
+  //margin-right:20px;
+  cursor: pointer;
+  display: block;
+  position: absolute;
+}
+
 .row {
   padding-left: 5px;
   padding-right: 5px;
@@ -41,7 +49,7 @@ h3 {
 .widget{
   position: relative;
   width: 100%;
-  background: #191919;
+  //background: #191919;
   height: 190px;
   overflow: hidden;
   margin-top:20px;
@@ -55,18 +63,14 @@ h3 {
     border-radius: 50%;
   }
 
-  .fa-cog {
-    margin-top: -50px;
-    z-index:1;
-
-  }
-
-  .userSettings {
-    margin-top:-20px;
-    margin-left: 70px;
-    font-size:12px;
-  }
 }
+    .userSettings {
+      margin-top:-20px;
+      margin-left: auto;
+      margin-right:auto;
+      font-size:12px;
+      display: inline-block;
+    }
 
 .user-middle {
     position: relative;

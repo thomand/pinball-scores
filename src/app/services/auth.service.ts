@@ -53,6 +53,7 @@ export class AuthService {
     if (this.userDetails == null ) {
         return false;
       } else {
+        this.$loggedInUser.emit(this.generateUserObject(this.userDetails));
         return true;
       }
     }

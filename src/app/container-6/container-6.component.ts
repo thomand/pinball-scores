@@ -7,6 +7,7 @@ import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { FirebaseService } from '../services/firebase.service';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/takeUntil';
+import { AuthService } from '../services/auth.service';
 
 
 @Component({
@@ -42,14 +43,20 @@ export class ModalContentComponent {
   displayedColumns = ['position','player', 'score', 'days'];
   dataSource = new MatTableDataSource<ScoreElement>([]);
   componentDestroyed$: Subject<boolean> = new Subject();
+  user: any;
+  playerUsernames: any;
  
-  constructor(public bsModalRef: BsModalRef, private firebaseService : FirebaseService) {}
+  constructor(public bsModalRef: BsModalRef, private firebaseService : FirebaseService, private authService : AuthService) {
+    this.authService.$loggedInUser.subscribe(user => {this.user = user; console.log(this.user, user)});
+    this.firebaseService.playersUsernames.takeUntil(this.componentDestroyed$).subscribe(usernames => this.playerUsernames = usernames);
+    
+  }
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
+  
   ngAfterViewInit() {
     this.firebaseService.getAllPlayerUsernames();
-    this.firebaseService.scores.takeUntil(this.componentDestroyed$).subscribe(scores => {
+      this.firebaseService.scores.takeUntil(this.componentDestroyed$).subscribe(scores => {
       this.dataSource = new MatTableDataSource<ScoreElement>(scores);
       this.dataSource.paginator = this.paginator;
     });
@@ -58,6 +65,15 @@ export class ModalContentComponent {
     if (titleString != "") {
       this.firebaseService.getScoresForMachine(this.title);
     }
+  }
+
+  playerNameEqualsLoggedInUser(playerData) {
+    console.log(this.playerUsernames);
+    console.log(this.user.name);
+    // if (this.playerUsernames.playerData.player.name == this.user.name) {
+    //   return true;
+    // }
+    return false;
   }
 
   ngOnDestroy() {
